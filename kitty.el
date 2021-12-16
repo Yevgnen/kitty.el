@@ -34,6 +34,9 @@
 (defcustom kitty-socket "unix:/tmp/kitty"
   "Default socket for Kitty.")
 
+(defcustom kitty-python-breakpoint-statement "breakpoint()"
+  "Breakpoint statement for Python.")
+
 (defface kitty-breakpoint-face
   '((t (:inherit hl-line :extend nil)))
   "Face for highlighting breakpoints.")
@@ -195,7 +198,7 @@
 ;;;###autoload
 (defun kitty-toggle-python-breakpoint (keep-breakpoint &optional dont-save)
   (interactive "P")
-  (let ((trace "breakpoint()"))
+  (let ((trace kitty-python-breakpoint-statement))
     (let ((line (thing-at-point 'line)))
       (unless (and line
                    (string-match trace line))
