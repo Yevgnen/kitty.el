@@ -62,12 +62,14 @@
 ;;;###autoload
 (defun kitty-focus (&optional tab-args window-args)
   (interactive)
-  (do-applescript
-   (mapconcat #'identity
-              '("tell application \"kitty\""
-                "    activate"
-                "end tell")
-              "\n"))
+  (cond ((eq system-type 'darwin)
+         (do-applescript
+          (mapconcat #'identity
+                     '("tell application \"kitty\""
+                       "    activate"
+                       "end tell")
+                     "\n")))
+        (t nil))
   (if tab-args
       (apply #'kitty-focus-tab (list nil tab-args)))
   (if window-args
