@@ -38,7 +38,7 @@
   "Breakpoint statement for Python.")
 
 (defface kitty-breakpoint-face
-  '((t (:inherit hl-line :extend nil)))
+  '((t (:inherit hl-line :extend t)))
   "Face for highlighting breakpoints.")
 
 (defun kitty--focus-p (x)
